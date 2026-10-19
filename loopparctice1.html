@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+     //for loop
+    //  for(let i=1;i<=100;i++){
+    //     console.log(i);
+    //  }
+
+
+    //for( odd numbers from 1 to 100)
+    // for(let i=1;i<=100;i+=2){
+    //     console.log(i);
+    // }
+
+
+    //for( multiplication table of 22)
+    // for(let i=1;i<=10;i++){
+    //     console.log("22 X "+i+" = "+22*i);
+    // }
+
+
+    //while loop
+    // let i=1;
+    // while(i<=100){
+    //     console.log(i);
+    //     i++;
+    // }
+
+
+   // while loop for( odd numbers from 1 to 100)    
+    // let i=1;
+    // while(i<=100){
+    //     console.log(i);
+    //     i+=2;
+    // }
+
+
+    //while loop for( multiplication table of 12)
+    // let i=1;
+    // while(i<=10){
+    //     console.log("12 X "+i+" = "+12*i);
+    //     i++;
+    // }
+
+   //do while loop
+//    let i=1;
+//    console.log("do while loop");
+//    do{
+//        console.log(i);
+//        i++; 
+//     }while(i<=100);
+
+    //do while loop for( odd numbers from 1 to 100)
+    // let i=1;
+    // console.log("do while loop for odd numbers");
+    // do{
+    //     console.log(i);
+    //     i+=2;
+    // }while(i<=100);
+
+
+    //do while loop for( multiplication table of 87)
+    // let i=1;
+    // console.log("do while loop for multiplication table of 87");
+    // do{
+    //     console.log("87 X "+i+" = "+87*i);
+    //     i++;
+    // }while(i<=10);
+
+    //palindrome number
+    // let number = prompt("Enter a number:");
+    // // let reversedNumber = number.split('').reverse().join('');
+    // console.log("Original number: " + number);
+    // console.log("Reversed number: " + reversedNumber);
+    // if (number === reversedNumber) {
+    //     console.log("The number is a palindrome.");
+    // } else {
+    //     console.log("The number is not a palindrome.");
+    // }
+
+    //fibonacci series
+   // let n = 10; // Number of terms in the Fibonacci series
+    // let a = 0, b = 1, next;
+    // console.log("Fibonacci series:");
+    // console.log(a);
+    // console.log(b);
+    // for (let i = 2; i < n; i++) {
+    //     next = a + b;
+    //     console.log(next);
+    //     a = b;
+    //     b = next;
+    // }
+
+
+    //factorial of a number
+    // let number = 5; // Change this to the number you want to calculate the factorial for
+    // let factorial = 1;
+    // for (let i = 1; i <= number; i++) {
+    //     factorial *= i;
+    // }
+    // console.log("Factorial of " + number + " is: " + factorial);
+
+
+
+    let num=123;
+
+    let originalNum=num;
+
+    let reversedNum=0;
+
+    while(num>0){
+        
+        let digit=num%10;
+        reversedNum=reversedNum*10+digit;
+        num=Math.floor(num/10);
+    }
+
+    if(reversedNum==originalNum){
+        console.log("The number is a palindrome.");
+    }
+    else{
+        console.log("The number is not a palindrome.");
+    }
+
+
+    </script>
+</body>
+</html>

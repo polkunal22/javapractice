@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let signal= "red";
+
+        switch(signal){
+            case "red":
+                console.log("Stop");
+                break;
+            case "yellow":
+                console.log("Get ready");
+                break;
+            case "green":
+                console.log("Go");
+                break;
+            default:
+                console.log("Invalid signal");
+        }
+
+        let year= 2024;
+
+        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+            console.log(year + " is a leap year");
+        } else {
+            console.log(year + " is not a leap year");
+        }
+
+        let number= 10;
+
+        if (number > 0) {
+            console.log(number + " is positive");
+        } else if (number < 0) {
+            console.log(number + " is negative");
+        } else {
+            console.log(number + " is zero");
+        }
+
+        let day= 3;
+
+        switch(day){
+            case 1:
+                console.log("Monday");
+                break;
+            case 2:
+                console.log("Tuesday");
+                break;
+            case 3:
+                console.log("Wednesday");
+                break;
+            case 4:
+                console.log("Thursday");
+                break;
+            case 5:
+                console.log("Friday");
+                break;
+            case 6:
+                console.log("Saturday");
+                break;
+            case 7:
+                console.log("Sunday");
+                break;
+            default:
+                console.log("Invalid day");
+        }
+
+        //type of triangle
+        let a= 5;
+        let b= 5;
+        let c= 8;
+
+        if (a === b && b === c) {
+            console.log("Equilateral triangle");
+        } else if (a === b || b === c || a === c) {
+            console.log("Isosceles triangle");
+        } else {
+            console.log("Scalene triangle");
+        }
+
+        let num1= 15;
+        let num2= 25;
+        let num3= 35;
+        console.log("Numbers:", num1, num2, num3);
+
+        let month= 2;
+        switch(month){
+            case 1:
+                console.log("January");
+                break;
+            case 2:
+                console.log("February");
+                break;
+            case 3:
+                console.log("March");
+                break;
+            case 4:
+                console.log("April");
+                break;
+            case 5:
+                console.log("May");
+                break;
+            case 6:
+                console.log("June");
+                break;
+            case 7:
+                console.log("July");
+                break;
+            case 8:
+                console.log("August");
+                break;
+            case 9:
+                console.log("September");
+                break;
+            case 10:
+                console.log("October");
+                break;
+            case 11:
+                console.log("November");
+                break;
+            case 12:
+                console.log("December");
+                break;
+            default:
+                console.log("Invalid month");
+        }
+
+
+       
+    </script>
+</body>
+</html>

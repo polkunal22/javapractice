@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let english = Number(prompt("Enter marks for English:"));
+        // let maths = Number(prompt("Enter marks for Maths:"));
+        // let science = Number(prompt("Enter marks for Science:"));
+        // let hindi = Number(prompt("Enter marks for Hindi:"));
+        // let computer = Number(prompt("Enter marks for Computer:"));
+
+        // let marks = [english, maths, science, hindi, computer];
+
+        // if (marks.some(m => !Number.isFinite(m) || m < 0 || m > 100)) {
+        //     console.log("Invalid marks entered. Please enter valid marks between 0 and 100.");
+        // } else {
+        //     let total = english + maths + science + hindi + computer;
+        //     let percentage = (total / 500) * 100;
+        //     let grade;
+
+        //     switch (true) {
+        //         case (percentage >= 90):
+        //             grade = "A+";
+        //             break;
+        //         case (percentage >= 80):
+        //             grade = "A";
+        //             break;
+        //         case (percentage >= 70):
+        //             grade = "B+";
+        //             break;
+        //         case (percentage >= 60):
+        //             grade = "B";
+        //             break;
+        //         case (percentage >= 50):
+        //             grade = "C";
+        //             break;
+        //         default:
+        //             grade = "F";
+        //     }
+
+        //     console.log("total marks=", total, "/500");
+        //     console.log("percentage=", percentage + "%");
+        //     console.log("grade=", grade);
+        // }
+
+
+        let number = Number(prompt("Enter First number:"));
+        let number2 = Number(prompt("Enter Second number:"));
+
+        let choice = Number(prompt(`
+            1. Addition
+            2. Subtraction
+            3. Multiplication
+            4. Division
+            5. Modulus                                                              
+            Enter your choice (1-5):
+        `));
+
+        switch (choice) {
+            case 1:
+                console.log("Addition:", number + number2);
+                break;
+            case 2:
+                console.log("Subtraction:", number - number2);
+                break;
+            case 3:
+                console.log("Multiplication:", number * number2);
+                break;
+            case 4:
+                if (number2 !== 0) {
+                    console.log("Division:", number / number2);
+                } else {
+                    console.log("Error: Division by zero is not allowed.");
+                }
+                break;
+            case 5:
+                if (number2 !== 0) {
+                    console.log("Modulus:", number % number2);
+                } else {
+                    console.log("Error: Modulus by zero is not allowed.");
+                }
+                break;
+            default:
+                console.log("Invalid choice. Please select a valid option (1-5).");
+        }
+    </script>
+</body>
+</html>
+
+
+1. Personal Student Profile Page
+2. Simple College/Student Information Page

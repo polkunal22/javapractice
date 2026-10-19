@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A clean student information page for Greenfield College.">
+    <title>Student Information | Greenfield College</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --navy: #142b45;
+            --blue: #2459a6;
+            --blue-dark: #194680;
+            --sky: #eaf2fc;
+            --ink: #26394e;
+            --muted: #68798c;
+            --line: #e1e8f0;
+            --surface: #ffffff;
+            --page: #f3f6fa;
+            --green: #24815f;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--page);
+            color: var(--ink);
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .site-header { background: var(--navy); color: white; }
+        .header-inner, .page-content, .footer-inner { width: min(100% - 40px, 1020px); margin: 0 auto; }
+
+        .header-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; color: white; text-decoration: none; }
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgb(255 255 255 / 35%);
+            border-radius: 12px;
+            background: rgb(255 255 255 / 10%);
+            font-size: 1rem;
+            font-weight: 800;
+        }
+        .brand-name { display: block; font-weight: 700; letter-spacing: .01em; }
+        .brand-caption { display: block; color: #c4d2e2; font-size: .78rem; }
+
+        nav { display: flex; flex-wrap: wrap; gap: 8px; }
+        nav a { padding: 8px 12px; border-radius: 8px; color: #e4edf7; font-size: .9rem; text-decoration: none; }
+        nav a:hover, nav a:focus-visible { background: rgb(255 255 255 / 12%); outline: none; }
+
+        .page-content { padding: 32px 0 48px; }
+        .breadcrumb { margin: 0 0 18px; color: var(--muted); font-size: .88rem; }
+        .breadcrumb span { color: var(--blue); font-weight: 600; }
+
+        .welcome {
+            position: relative;
+            overflow: hidden;
+            padding: 30px 34px;
+            border-radius: 18px;
+            background: linear-gradient(115deg, #1c4778, #3475bd);
+            color: white;
+        }
+        .welcome::after {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            top: -125px;
+            right: 6%;
+            border: 1px solid rgb(255 255 255 / 18%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 28px rgb(255 255 255 / 6%), 0 0 0 58px rgb(255 255 255 / 5%);
+        }
+        .eyebrow { position: relative; z-index: 1; margin: 0 0 5px; color: #d6e8ff; font-size: .78rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+        .welcome h1 { position: relative; z-index: 1; margin: 0; font-size: clamp(1.8rem, 5vw, 2.4rem); line-height: 1.2; }
+        .welcome .summary { position: relative; z-index: 1; max-width: 610px; margin: 10px 0 0; color: #e7f0fa; }
+
+        .student-card {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin: -24px 22px 24px;
+            padding: 20px 22px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--surface);
+            box-shadow: 0 8px 24px rgb(20 43 69 / 7%);
+        }
+        .avatar {
+            width: 70px;
+            height: 70px;
+            flex: 0 0 70px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--sky);
+            color: var(--blue);
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+        .student-card h2 { margin: 0; color: var(--navy); font-size: 1.3rem; }
+        .student-card p { margin: 3px 0 0; color: var(--muted); }
+        .status { margin-left: auto; padding: 6px 11px; border-radius: 999px; background: #eaf7f1; color: var(--green); font-size: .8rem; font-weight: 700; white-space: nowrap; }
+
+        .section-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+        .panel {
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--surface);
+            box-shadow: 0 4px 14px rgb(20 43 69 / 3%);
+        }
+        .panel + .panel { margin-top: 20px; }
+        .panel-heading { display: flex; align-items: center; gap: 11px; margin: 0 0 17px; color: var(--navy); font-size: 1.08rem; }
+        .heading-icon { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; background: var(--sky); color: var(--blue); font-size: .9rem; }
+
+        dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; }
+        .info-item { min-width: 0; padding: 12px 13px; border: 1px solid #e9eef4; border-radius: 10px; background: #fcfdff; }
+        dt { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .055em; text-transform: uppercase; }
+        dd { margin: 4px 0 0; color: var(--ink); font-size: .94rem; font-weight: 600; overflow-wrap: anywhere; }
+
+        .college-name { margin: 0; color: var(--navy); font-size: 1.1rem; font-weight: 700; }
+        .college-description { margin: 7px 0 17px; color: var(--muted); font-size: .92rem; }
+        .college-facts { display: grid; gap: 11px; padding-top: 15px; border-top: 1px solid var(--line); }
+        .fact { display: flex; justify-content: space-between; gap: 16px; font-size: .9rem; }
+        .fact span:first-child { color: var(--muted); }
+        .fact span:last-child { color: var(--ink); font-weight: 600; text-align: right; }
+
+        .notice { margin: 20px 0 0; padding: 15px 18px; border: 1px solid #dce9f7; border-left: 4px solid var(--blue); border-radius: 10px; background: #f7fbff; color: #435a72; font-size: .92rem; }
+        .notice strong { color: var(--navy); }
+
+        .site-footer { border-top: 1px solid var(--line); background: white; }
+        .footer-inner { display: flex; justify-content: space-between; gap: 16px; padding: 20px 0; color: var(--muted); font-size: .84rem; }
+        .footer-inner p { margin: 0; }
+
+        @media (max-width: 720px) {
+            .section-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            .header-inner, .page-content, .footer-inner { width: min(100% - 28px, 1020px); }
+            .header-inner { min-height: auto; padding: 14px 0; align-items: flex-start; flex-direction: column; gap: 10px; }
+            nav { width: 100%; }
+            nav a { padding: 7px 9px; font-size: .82rem; }
+            .page-content { padding: 22px 0 32px; }
+            .welcome { padding: 24px 22px 30px; }
+            .student-card { margin: -18px 10px 18px; padding: 15px; gap: 12px; }
+            .avatar { width: 56px; height: 56px; flex-basis: 56px; font-size: 1.1rem; }
+            .student-card h2 { font-size: 1.1rem; }
+            .student-card p { font-size: .85rem; }
+            .status { padding: 5px 8px; font-size: .72rem; }
+            .panel { padding: 19px; }
+            dl { grid-template-columns: 1fr; gap: 9px; }
+            .footer-inner { flex-direction: column; gap: 4px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="#top" aria-label="Greenfield College home">
+                <span class="brand-mark" aria-hidden="true">GC</span>
+                <span><span class="brand-name">Greenfield College</span><span class="brand-caption">Student portal</span></span>
+            </a>
+            <nav aria-label="Page sections">
+                <a href="#student">Student</a>
+                <a href="#academic">Academic</a>
+                <a href="#college">College</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-content" id="top">
+        <p class="breadcrumb">Home <span aria-hidden="true">/</span> Student Information</p>
+        <section class="welcome" aria-labelledby="page-title">
+            <p class="eyebrow">Student information</p>
+            <h1 id="page-title">Your college at a glance</h1>
+            <p class="summary">A quick overview of student details, academic information, and college contacts.</p>
+        </section>
+
+        <section class="student-card" id="student" aria-labelledby="student-name">
+            <div class="avatar" aria-hidden="true">KP</div>
+            <div>
+                <h2 id="student-name">Kunal Amul Pol</h2>
+                <p>Student ID: GC2026-1042</p>
+            </div>
+            <span class="status">Enrolled</span>
+        </section>
+
+        <div class="section-grid">
+            <div>
+                <section class="panel" id="academic" aria-labelledby="academic-title">
+                    <h2 class="panel-heading" id="academic-title"><span class="heading-icon" aria-hidden="true">01</span>Academic details</h2>
+                    <dl>
+                        <div class="info-item"><dt>Program</dt><dd>Bachelor of Computer Science</dd></div>
+                        <div class="info-item"><dt>Department</dt><dd>Computer Science</dd></div>
+                        <div class="info-item"><dt>Year of study</dt><dd>2nd Year</dd></div>
+                        <div class="info-item"><dt>Academic year</dt><dd>2025–2026</dd></div>
+                        <div class="info-item"><dt>Campus</dt><dd>Main Campus</dd></div>
+                        <div class="info-item"><dt>Enrollment status</dt><dd>Full-time</dd></div>
+                    </dl>
+                </section>
+
+                <section class="panel" aria-labelledby="contact-title">
+                    <h2 class="panel-heading" id="contact-title"><span class="heading-icon" aria-hidden="true">02</span>Contact information</h2>
+                    <dl>
+                        <div class="info-item"><dt>Student email</dt><dd>jordan.miller@example.com</dd></div>
+                        <div class="info-item"><dt>Student services</dt><dd>services@greenfield.example</dd></div>
+                        <div class="info-item"><dt>Office location</dt><dd>Student Services, Room 104</dd></div>
+                        <div class="info-item"><dt>Office hours</dt><dd>Monday–Friday, 9:00 AM–4:00 PM</dd></div>
+                    </dl>
+                </section>
+            </div>
+
+            <aside>
+                <section class="panel" id="college" aria-labelledby="college-title">
+                    <h2 class="panel-heading" id="college-title"><span class="heading-icon" aria-hidden="true">03</span>About the college</h2>
+                    <p class="college-name">Greenfield College</p>
+                    <p class="college-description">A welcoming learning community focused on knowledge, creativity, and preparing students for the future.</p>
+                    <div class="college-facts">
+                        <div class="fact"><span>Established</span><span>1998</span></div>
+                        <div class="fact"><span>Location</span><span>Springfield</span></div>
+                        <div class="fact"><span>Website</span><span>greenfield.example</span></div>
+                    </div>
+                </section>
+                <p class="notice"><strong>Need help?</strong> Contact Student Services for questions about enrollment, schedules, or campus support.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>&copy; 2026 Greenfield College</p>
+            <p>Student Information Page</p>
+        </div>
+    </footer>
+</body>
+</html>
