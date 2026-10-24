@@ -115,9 +115,60 @@
 
 
 // greet1('kunal',23);
+//write a code a prime number or not
+function isPrime(num) {
+    if (num <= 1) {
+        return false;
+    }
+    if (num <= 3) {
+        return true;
+    }
+    if (num % 2 === 0 || num % 3 === 0) {
+        return false;
+    }
+    for (let i = 5; i * i <= num; i += 6) {
+        if (num % i === 0 || num % (i + 2) === 0) {
+            return false;
+        }
+    }
+    return true;
+}   
+
+console.log(isPrime(17)); 
+console.log(isPrime(15)); 
+
+//takr number as input from user and check even or odd
+function checkEvenOdd(num) {
+    if (num % 2 === 0) {
+        return "even";
+    } else {
+        return "odd";
+    }
+}
 
 
+console.log(checkEvenOdd(5));
+console.log(checkEvenOdd(10));
+console.log(checkEvenOdd(0));
 
+// cheak a given number is palindrome or not
+function isPalindrome(num) {
+    let str = num.toString();
+    let reversed = str.split("").reverse().join("");
+    return str === reversed;
+} 
+
+console.log(isPalindrome(121)); // true
+console.log(isPalindrome(123)); // false
+
+//without using function solve calculate area and perimeter of rectangule
+let length = 10;
+let width = 5;
+let area = length * width; 
+let perimeter = 2 * (length + width);
+
+console.log("Area of rectangle: " + area);
+console.log("Perimeter of rectangle: " + perimeter);
     </script>
     
 </body>
