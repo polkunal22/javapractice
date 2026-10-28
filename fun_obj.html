@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // const person={
+        //     name:"shardul",
+        //     age:27,
+        //     greet:function(){
+        //      console.log("Hello from function greet");
+        //      alert("Hello js");
+        //     }   
+        // }
+
+        // person.greet()
+
+        const account = {
+            owner: "kunal",
+            balance: 50000,
+            getInfo() {
+                return `Owner: ${this.owner}, Balance: ${this.balance}`;
+            }
+        };
+        console.log(account.getInfo());
+
+        const company={
+
+            name : "techcorp",
+            address : {
+                city : "Navi Mumbai",
+                pincode : "400709"
+            }
+        };
+
+        console.log(company.address.city);
+
+
+        const users=[
+
+        { id: 1 , name: "sanket" },
+        { id: 2 , name: "vinit" },
+        { id: 3 , name: "kunal"}
+        ];
+
+        console.log(users[0].name);
+
+
+        const car={
+            brand: "bmw",
+            year: "20000",
+            colour: "black" 
+
+        }
+        const keys =Object.keys(car)
+        console.log(keys)
+
+        const cars={
+
+            brand: "ford",
+            year: "2014",
+            colour: "red"
+        }
+
+        const values = Object.values(cars)
+        console.log(values)
+
+        
+
+    </script>
+</body>
+</html>
