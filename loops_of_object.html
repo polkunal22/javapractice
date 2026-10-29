@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let score={
+            
+            name:"sanket",
+            course:"DCIT",
+            marks: 90,
+            grade: "A"
+        }
+
+        for(let scores in score){
+            
+            console.log(scores, score[scores]);
+        }
+
+        let num=10;
+
+        console.log(`Number is ${num}`)
+
+
+
+        const student ={
+
+            name: "sanket",
+            age: 20,
+            city: "Delhi",
+            marks: [90,80,78,],
+            sunject: ["maths", "science", "english"],
+            getsummary () {
+
+                const total = this.marks.reduce( ( a, b) => a + b, 0);
+                return `${ this.name} scored total ${ total} marks across ${ this.sunject.length} subjects.`;
+
+
+            }
+        };
+
+        console.log(student.getsummary());
+
+
+
+        // Use for ... in to calculate the sum of all numerical values in an object.
+
+        const data = {
+            a: 10,
+            b: 20,
+            c: 30,
+            d: "not a number",
+            e: 40
+        };
+
+        let sum = 0;
+        for (let key in data) {
+            if (typeof data[key] === "number") {
+                sum += data[key];
+            }
+        }
+        console.log(`Sum of all numerical values: ${sum}`);
+
+        // Write a function that merges two objects using the spread operator.
+        function mergeObjects(obj1, obj2) {
+            return { ...obj1, ...obj2 };
+        }
+        const merged = mergeObjects({ a: 1, b: 2 }, { c: 3, d: 4 });
+        console.log(merged);
+
+        // Destructure name and city from a deeply nested user object.
+        const user = {
+            id: 1,
+            profile: {
+                name: "John Doe",
+                address: {
+                    city: "New York",
+                    zip: "10001"
+                }
+            }
+        };
+        const { name, address: { city } } = user.profile;
+        console.log(name, city);
+
+        // Use Object . keys( ) to count the total number of properties inside an object
+        const obj = { a: 1, b: 2, c: 3 };
+        console.log(`Total properties: ${Object.keys(obj).length}`);
+
+        // Create a book object and write a method to print its title and author.
+        const book = {
+            title: "The Great Gatsby",
+            author: "F. Scott Fitzgerald",
+            printInfo() {
+                console.log(`Title: ${this.title}, Author: ${this.author}`);
+            }
+        };
+        book.printInfo();
+    </script>
+</body>
+</html>
