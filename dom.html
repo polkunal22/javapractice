@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <!-- <h1 id="id1">JavaScript DOM Manipulation</h1> -->
+
+    <!-- <div class="container">
+        <h1>Hello</h1>
+        <h1>Java</h1>
+        <h1>Python</h1>
+        <h1>JS</h1>
+    </div> -->
+
+    <!-- <h1></h1> -->
+
+    // Change an image src when you click it.
+
+    <img id="myImage" src="image1.jpg" alt="Image 1" onclick="changeImage()">
+
+   
+
+    //Add a button that creates a new li in a list on each click.
+     <button onclick="addListItem()">Add Item</button>
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+
+
+    // Give each list item a delete button that removes it
+    <ul id="myList">
+        <li>Item 1 <button onclick="deleteItem(this)">Delete</button></li>
+        <li>Item 2 <button onclick="deleteItem(this)">Delete</button></li>
+        <li>Item 3 <button onclick="deleteItem(this)">Delete</button></li>
+
+
+        //Toggle dark mode on the body with 
+classList.toggle()
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+
+        // Change the text of a paragraph when you hover over it.
+        <p id="myParagraph" onmouseover="changeText()" onmouseout="resetText()">Hover over me!</p>
+
+        // Change the background color of a div when you click it.
+        <div id="myDiv" onclick="changeBackgroundColor()" style="width: 200px; height: 200px;
+         background-color: lightgray;"></div>
+
+
+// Change the font size of a paragraph when you click a button.
+        <p id="myParagraph">This is a paragraph.</p>
+        <button onclick="changeFontSize()">Change Font Size</button>
+
+        // Change the text color of a paragraph when you click a button.
+        <p id="myParagraph">This is a paragraph.</p>
+        <button onclick="changeTextColor()">Change Text Color</button>
+
+        // Change the text of a paragraph when you click a button.
+        <p id="myParagraph">This is a paragraph.</p>
+        <button onclick="changeText()">Change Text</button>
+
+        // make a button that, when clicked, changes the text of a paragraph to a random quote from an array of quotes.
+        <p id="quoteParagraph">Click the button to get a random quote.</p>
+        <button onclick="getRandomQuote()">Get Random Quote</button>
+
+        //page baground color change on button click
+        <button onclick="changeBackgroundColor()">Change Background Color</button>
+        
+        // Change the text of a paragraph to the current date and time when a button is clicked.
+        <p id="dateParagraph">Click the button to get the current date and time.</p>
+        <button onclick="showDateTime()">Show Date and Time</button>
+        
+    //  baground color chabe to red on mouse hover and back to white on mouse out
+        <div id="colorDiv" onmouseover="changeColor()" onmouseout="resetColor()
+        " style="width: 200px; height: 200px; background-color: white;"></div>   
+
+        // 
+
+    <script>
+
+        // const heading = document.getElementById("id1");
+        // heading.style.fontFamily = "Arial, sans-serif";
+
+        // const container=document.getElementsByClassName("container");
+
+        // container[0].style.backgroundColor = "lightblue"; // This line will throw an error because container is an HTMLCollection, not a single element.
+    
+        // const tag=document.getElementsByTagName("h1");
+        //  tag[0].innerHTML="Hello from JS";
+    
+    </script>
+
+</body>
+</html>
