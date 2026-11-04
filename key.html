@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="userInput" placeholder="Enter something">
+
+    <script>
+
+        const input = document.getElementById("userInput");
+        input.addEventListener("input", function() {
+            const value = input.value;
+            console.log("User input:", value);
+        });
+
+        input.addEventListener("change", function() {
+            const value = input.value;
+            console.log("Input changed:", value);
+        });
+
+        input.addEventListener("keydown", function(event) {
+            console.log("Key down:", event.key);
+        });
+        input.addEventListener("keyup", function(event) {
+            console.log("Key up:", event.key);
+        });
+        input.addEventListener("keypress", function(event) {
+            console.log("Key press:", event.key);
+        });
+    </script>
+</body>
+</html>

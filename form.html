@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple number guessing game — guess a number between 1 and 10.">
+    <title>Number Guessing Game</title>
+    <style>
+        :root {
+            --color-bg: #c3b6a7;
+            --color-surface: #ffffff;
+            --color-primary: #2f7d68;
+            --color-primary-dark: #256350;
+            --color-text: #1f2d2a;
+            --color-muted: #6b7b77;
+            --color-danger: #c0392b;
+            --color-success: #1e8449;
+            --radius: 12px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .card {
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .card h1 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: var(--color-primary-dark);
+        }
+
+        .card p.subtitle {
+            color: var(--color-muted);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="number"] {
+            flex: 1;
+            padding: 12px 14px;
+            font-size: 1rem;
+            border: 1px solid #d5dedb;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="number"]:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(47, 125, 104, 0.15);
+        }
+
+        button {
+            padding: 12px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: var(--color-primary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: var(--color-primary-dark);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        button.secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+            margin-top: 16px;
+            display: none;
+        }
+
+        button.secondary:hover {
+            background-color: rgba(47, 125, 104, 0.08);
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            min-height: 1.4em;
+        }
+
+        #result.success { color: var(--color-success); }
+        #result.error   { color: var(--color-danger); }
+        #result.hint    { color: var(--color-primary-dark); }
+
+        .attempts {
+            margin-top: 6px;
+            font-size: 0.85rem;
+            color: var(--color-muted);
+        }
+        #description {
+            margin-bottom: 4px;
+            color: black;
+        }
+        #instructions {
+            margin-bottom: 24px;
+                        color: black;
+
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1>Number Guessing Game</h1>
+        <p  id="description" class="subtitle">Try to guess the number I'm thinking of!</p>
+        <p id="instructions" class="subtitle">Guess a number between 1 and 20</p>
+
+        <form id="guessForm">
+            <input type="number" id="guess" min="1" max="20" step="1"
+                   placeholder="Enter your guess" aria-label="Your guess" required>
+            <button type="submit" id="guessButton">Guess</button>
+        </form>
+
+        <p id="result" role="status" aria-live="polite"></p>
+        <p class="attempts" id="attempts"></p>
+
+        <button type="button" class="secondary" id="resetButton">Play Again</button>
+    </main>
+
+    <script>
+        "use strict";
+
+        const MIN = 1;
+        const MAX = 20;
+
+        const form = document.getElementById("guessForm");
+        const guessInput = document.getElementById("guess");
+        const resultEl = document.getElementById("result");
+        const attemptsEl = document.getElementById("attempts");
+        const resetButton = document.getElementById("resetButton");
+
+        let randomNumber = generateRandomNumber();
+        let attempts = 0;
+        let gameOver = false;
+
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * MAX) + MIN;
+        }
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (gameOver) return;
+            checkGuess();
+        });
+
+        function checkGuess() {
+            const guess = Number(guessInput.value);
+
+            if (guessInput.value === "" || guess < MIN || guess > MAX) {
+                setResult(`Please enter a number between ${MIN} and ${MAX}.`, "error");
+                return;
+            }
+
+            attempts++;
+            attemptsEl.textContent = `Attempts: ${attempts}`;
+
+            if (guess > randomNumber) {
+                setResult("Too high! Try again.", "hint");
+            } else if (guess < randomNumber) {
+                setResult("Too low! Try again.", "hint");
+            } else {
+                setResult(`Correct! 🎉 You guessed it in ${attempts} ${attempts === 1 ? "attempt" : "attempts"}.`, "success");
+                endGame();
+                guessInput.value = "";
+            }
+
+            guessInput.value = "";
+            guessInput.focus();
+        }
+
+        function setResult(message, type) {
+            resultEl.textContent = message;
+            resultEl.className = type;
+        }
+
+        function endGame() {
+            gameOver = true;
+            guessInput.disabled = true;
+            form.querySelector("button[type='submit']").disabled = true;
+            resetButton.style.display = "inline-block";
+        }
+
+        resetButton.addEventListener("click", function () {
+            randomNumber = generateRandomNumber();
+            attempts = 0;
+            gameOver = false;
+            guessInput.disabled = false;
+            form.querySelector("button[type='submit']").disabled = false;
+            attemptsEl.textContent = "";
+            setResult("", "");
+            resetButton.style.display = "none";
+            guessInput.focus();
+        });
+    </script>
+</body>
+</html>
