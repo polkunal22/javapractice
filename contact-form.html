@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact form — send us a message." />
+    <title>Contact Form</title>
+    <style>
+      :root {
+        --color-bg: #f0f4f3;
+        --color-surface: #ffffff;
+        --color-primary: #2f7d68;
+        --color-primary-dark: #256350;
+        --color-text: #1f2d2a;
+        --color-muted: #6b7b77;
+        --color-border: #d5dedb;
+        --color-error: #c0392b;
+        --radius: 12px;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: var(--color-bg);
+        color: var(--color-text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .card {
+        background: var(--color-surface);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 40px 36px;
+        width: 100%;
+        max-width: 460px;
+      }
+
+      .card h1 {
+        font-size: 1.5rem;
+        color: var(--color-primary-dark);
+        margin-bottom: 6px;
+      }
+
+      .card .subtitle {
+        color: var(--color-muted);
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+      }
+
+      .field {
+        margin-bottom: 18px;
+      }
+
+      label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 1rem;
+        font-family: inherit;
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(47, 125, 104, 0.15);
+      }
+
+      button {
+        width: 100%;
+        padding: 13px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: var(--color-primary);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition:
+          background-color 0.2s,
+          transform 0.1s;
+      }
+
+      button:hover {
+        background-color: var(--color-primary-dark);
+      }
+      button:active {
+        transform: scale(0.98);
+      }
+
+      .status {
+        margin-top: 16px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-align: center;
+        min-height: 1.3em;
+      }
+
+      .status.success {
+        color: var(--color-primary);
+      }
+      .status.error {
+        color: var(--color-error);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>Contact Us</h1>
+      <p class="subtitle">Fill in the form below and we'll get back to you.</p>
+
+      <form id="contactForm" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your full name"
+            minlength="2"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Write your message..."
+            minlength="10"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </main>
+
+    <script>
+      "use strict";
+
+      const form = document.getElementById("contactForm");
+      const statusEl = document.getElementById("status");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+
+        if (name.length < 2) {
+          setStatus("Please enter your name (at least 2 characters).", "error");
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          setStatus("Please enter a valid email address.", "error");
+          return;
+        }
+        if (message.length < 10) {
+          setStatus("Message must be at least 10 characters long.", "error");
+          return;
+        }
+
+        // In a real app, send the data to a server here, e.g. with fetch().
+        console.log("Form submitted:", { name, email, message });
+
+        setStatus("Thank you! Your message has been sent.", "success");
+        form.reset();
+      });
+
+      function setStatus(text, type) {
+        statusEl.textContent = text;
+        statusEl.className = "status " + (type || "");
+      }
+    </script>
+  </body>
+</html>
