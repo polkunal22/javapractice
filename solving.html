@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do-list</title>
+</head>
+<body>
+    <!-- <h2> change background color</h2>
+    <button onclick="changeColor()" ondblclick="resetcolor()">change color</button>
+    
+    <script>
+        function changeColor(){
+            document.body.style.backgroundColor = "lightblue";
+        }
+        function resetcolor() {
+            document.body.style.backgroundColor = "white";
+        }
+    </script> -->
+
+    <h1> TO-DO-LIST</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            let input = document.getElementById("taskInput");
+            let task = input.value.trim();
+            if (task === "") {
+                alert("Please enter a task");
+                return;
+            }
+            let li = document.createElement("li");
+            li.textContent = task;
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.addEventListener("click", function() {
+                li.remove();
+            });
+            li.appendChild(deleteBtn);
+
+            document.getElementById("taskList").appendChild(li);
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
