@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        try {
+            const num = 10;
+            console.log(num.toFixed(2));
+        } catch (err) {
+            console.error("Error:", err.message);
+        } finally {
+            console.log("This always runs.");
+        }
+
+        function divide(a, b) {
+            if (b === 0) {
+                throw new Error("Cannot divide by zero!");
+            }
+            return a / b;
+        }
+
+        try {
+            const result = divide(10, 2);
+            console.log(result);
+        } catch (err) {
+            console.error("Alert:", err.message);
+        } finally {
+            console.log("This always runs.");
+        }
+
+        function withdraw(amount, balance) {
+            if (amount > balance) {
+                throw new Error("Insufficient balance");
+            }
+            return balance - amount;
+        }
+
+        try {
+            console.log(withdraw(250, 500));
+        } catch (err) {
+            console.error(err.name, err.message);
+            console.error(err.stack);
+        }
+
+
+
+        function checkAge(age) {
+            if (age < 18) {
+                throw new Error("You must be at least 18 years old.");
+            }
+            console.log("Access granted.");
+        }
+        try {
+            checkAge(16);
+        } catch (err) {
+            console.error(err.name, err.message);
+        } finally {
+            console.log("Age check complete.");
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                throw new Error("Invalid email format");
+            }
+            console.log("Valid email:", email);
+        }
+        try {
+            validateEmail("user@example.com");
+        } catch (err) {
+            console.error(err.name, err.message);
+        } finally {
+            console.log("Email validation complete.");
+        }
+
+
+
+
+        try {
+            const data = JSON.parse('{"name": "John", "age": 30}');
+            console.log(data);
+        } catch (err) {
+            console.error("JSON Error:", err.message);
+        } finally {
+            console.log("JSON parsing complete.");
+        }
+
+        try {
+            console.log ("start");
+            throw new Error("Something went wrong!");
+            console.log("end"); // This line will not execute
+        } catch (err) {
+            console.error("Error:", err.message);
+        } finally {
+            console.log("finally block executed.");
+        }
+    </script>
+
+</body>
+</html>
