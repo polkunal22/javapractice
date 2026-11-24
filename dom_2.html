@@ -48,8 +48,174 @@
             heading.style.color = ['red', 'blue', 'green', 'orange'][index];
                 }); -->
                 
-                
 
+<script>
+
+// <div id="posts-container">
+//     <button id="load">Load Posts</button>
+//     <p id="msg"></p>
+//     <ul id="posts"></ul>
+// </div>
+
+// $("#load").click(function(){
+// $("#msg").text("Loading...");
+// $.ajax({
+// url: "https://jsonplaceholder.typicode.com/posts?_limit=3",
+// dataType: "json",
+// success: function(data){
+// $("#msg").text("");
+// $.each(data, function(i, p){
+// $("#posts").append("<li>" + p.title + "</li>");
+// });
+// },
+// error: function(){ $("#msg").text("Failed to load"); }
+// });
+// })
+            
+
+
+            </script>
+
+            <!-- <form id="f">
+<input id="em ail" placeholder="Em ail"><span class="err"></span>
+<input id="pass" type="password" placeholder="Password"><span class="err"></span>
+<button>Register</button>
+</form >
+<style> .err { color: red; font-size: 12px; } </style>
+<script>
+$("#f").submit(function(e){
+e.preventDefault();
+var ok = true;
+$(".err").text("");
+if (!/^\S+@ \S+\.\S+$/.test($("#em ail").val())) {
+$("#em ail").next().text("Invalid em ail"); ok = false;
+}
+if ($("#pass").val().length < 6) {
+$("#pass").next().text("M in 6 characters"); ok = false;
+}
+if (ok) alert("Form is valid!");
+}) -->
+
+
+
+
+<script>
+
+
+
+</script>
+
+<input id="task" /> <button id="add">Add</button>
+<ul id="todo"></ul>
+<style>
+    .done { text-decoration: line-through; color: gray; }
+</style>
+<script>
+    // const task = document.getElementById("task");
+    // const add = document.getElementById("add");
+    // const todo = document.getElementById("todo");
+
+    // add.addEventListener("click", function () {
+    //     const text = task.value.trim();
+    //     if (text === "") return;
+
+    //     const item = document.createElement("li");
+    //     item.textContent = text + " ";
+
+    //     const remove = document.createElement("span");
+    //     remove.className = "del";
+    //     remove.textContent = "x";
+    //     item.appendChild(remove);
+    //     todo.appendChild(item);
+    //     task.value = "";
+    // });
+
+    // todo.addEventListener("click", function (event) {
+    //     if (event.target.classList.contains("del")) {
+    //         event.stopPropagation();
+    //         event.target.parentElement.remove();
+    //     } else if (event.target.tagName === "LI") {
+    //         event.target.classList.toggle("done");
+    //     }
+    // });
+</script>
+
+<div id="slider">
+    <img src="1.jpg" alt="Slide 1">
+    <img src="2.jpg" alt="Slide 2">
+    <img src="3.jpg" alt="Slide 3">
+</div>
+<button id="prev">Prev</button> <button id="next">Next</button>
+<style> #slider img { display: none; width: 300px; } </style>
+<script>
+var i = 0, n = $("#slider img").length;
+$("#slider img").eq(0).show();
+function go(k){
+$("#slider img").eq(i).fadeOut(300);
+i = (k + n) % n;                       
+// wrap around
+$("#slider img").eq(i).fadeIn(300);
+}
+$("#next").click(function(){ go(i + 1); });
+$("#prev").click(function(){ go(i - 1); });
+setInterval(function(){ go(i + 1); }, 3000);
+</script>
+
+
+
+
+
+
+
+<input id="a" type="number"> <input id="b" type="number">
+<button class="op" data-op="+">+</button>
+<button class="op" data-op="-">-</button>
+<button class="op" data-op="*">×</button>
+<button class="op" data-op="/">÷</button>
+<p>Result: <span id="res">0</span></p>
+
+
+<style> input { padding: 8px; width: 200px; } </style>
+<input type="password" id="pwd" placeholder="Password">
+<label><input type="checkbox" id="show "> Show</label>
+
+
+<script>
+    document.querySelectorAll(".op").forEach(function (button) {
+        button.addEventListener("click", function () {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const op = button.dataset.op;
+            let result;
+
+            if (Number.isNaN(a) || Number.isNaN(b)) {
+                result = "Enter both numbers";
+            } else if (op === "+") {
+                result = a + b;
+            } else if (op === "-") {
+                result = a - b;
+            } else if (op === "*") {
+                result = a * b;
+            } else {
+                result = b === 0 ? "Cannot divide by 0" : a / b;
+            }
+
+            document.getElementById("res").textContent = result;
+        });
+    });
+
+
+    $("#show ").change(function(){
+var type = this.checked ? "text" : "password";
+$("#pwd").attr("type", type);
+});
+</script>
+</body> 
+
+
+
+
+                                 
                
 
 
